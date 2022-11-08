@@ -1,3 +1,4 @@
+
 import java.util.ArrayList;
 
 
@@ -9,6 +10,8 @@ public class MonthlyReport {
         this.month = month;
     }
 
+
+
     public void read() { // чтение месячного отчёта из файла
         String content = SimpleFileReader.readFileContentsOrNull("resources/m.20210" + this.month + ".csv");
         if (content == null) {
@@ -17,8 +20,8 @@ public class MonthlyReport {
 
         String[] lines = content.split("\\n");
         for (int i = 1; i < lines.length; i++) {
-            String Line = lines[i];
-            String[] parts = Line.split(",");
+            String line = lines[i];
+            String[] parts = line.split(",");
             String itemName = parts[0];
             boolean isExpense = Boolean.parseBoolean(parts[1]);
             int quantity = Integer.parseInt(parts[2]);
@@ -83,16 +86,16 @@ public class MonthlyReport {
     public String getMostExpenseName() { // Имя самой большой траты
         int value = 0;
         String name = "";
-        for (MonthlyReportRecord record : records) {
-            if (record.isExpense && record.sumOfOne > value) {
-                value = record.sumOfOne;
-                name = record.itemName;
+        for (MonthlyReportRecord rec : records) {
+            if (rec.isExpense && rec.sumOfOne > value) {
+                value = rec.sumOfOne;
+                name = rec.itemName;
             }
         }
         return name;
     }
 
-    public int getProfit() { // Сумма прибыли
+    /*public int getProfit() { // Сумма прибыли
         int profit = 0;
         int expense = 0;
         int income = 0;
@@ -106,5 +109,5 @@ public class MonthlyReport {
         }
         profit = income - expense;
         return profit;
-    }
+    }*/
 }

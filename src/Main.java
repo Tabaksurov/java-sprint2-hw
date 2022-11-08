@@ -15,8 +15,14 @@ public class Main {
 
         while (true) {
             printMenu(); //печать меню
-            int userInput = scanner.nextInt();
-
+            String input = scanner.next();
+            Integer userInput = -1;
+try {
+    userInput = Integer.parseInt(input);
+} catch (NumberFormatException e) {
+    System.out.println("Ошибка ввода. Введите число.");
+    continue;
+}
             if (userInput == 1) { // Считать все месячные отчёты
                 for (int i = 1; i <= 3; i++) {
                     MonthlyReport report = new MonthlyReport(i);
@@ -75,11 +81,14 @@ public class Main {
                     System.out.println("Считайте месячные и годовой отчёт!");
                 }
 
-            } else if (userInput == 123456789) { //  Завершение программы
+            } else if (userInput == 6) { //  Завершение программы
                 break;
             }
+            else  { //  Завершение программы
+                System.out.println("Такой комманды нет. Повторите ввод.");
+            }
         }
-
+        scanner.close();
 
     }
 
@@ -90,6 +99,8 @@ public class Main {
         System.out.println("3 - Сверить отчёты");
         System.out.println("4 - Вывести информацию о всех месячных отчётах");
         System.out.println("5 - Вывести информацию о годовом отчёте");
+        System.out.println("6 - Для выхода из приложения");
+
     }
 }
 
